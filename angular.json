@@ -17,9 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/heating-degree-days",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "outputPath": {
+                "base": "dist/heating-degree-days",
+                "browser": ""
+            },
             "polyfills": [
               "zone.js"
             ],
