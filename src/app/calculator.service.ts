@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+type HeatingDegreeDayData = {
+    [key: number]: number[]
+  }
 
+
+@Injectable({
+    providedIn: 'root'
+  })
+  
 export class CalculatorService {
 
-  private reference_data: number[] = [793, 724, 651, 446, 206, 34, 10, 32, 188, 416, 557, 698];
-  private heating_degree_days_data: number[] = [658, 651, 680, 420, 140, 56, 0, 0, 49, 478, 636, 797];
+  private monthly_data: HeatingDegreeDayData = {
+    2021: [ 792, 836, 652, 432, 223, 0, 0, 44, 284, 340, 538, 830 ],
+    2022: [ 779, 613, 612, 473, 219, 0, 5, 14, 257, 359, 553, 692 ],
+    2023: [ 658, 651, 680, 420, 140, 56, 0, 0, 49, 478, 636, 797 ]
+  };
+  private reference_data = [793, 724, 651, 446, 206, 34, 10, 32, 188, 416, 557, 698];
 
   constructor() { }
   
   calculateNormalizedConsumption(consumption: number, date: Date) {
-    const reference_heating_degree_days = this.reference_data[date.getMonth()];
-    const real_heating_degree_days = this.heating_degree_days_data[date.getMonth()];
-    return Math.round((reference_heating_degree_days/real_heating_degree_days)*consumption);
-}
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const reference_hdd = this.reference_data[month];
+    const monthly_hdd = this.monthly_data[year][month];
 
+    return Math.round((reference_hdd/monthly_hdd)*consumption);
+  };
 }
