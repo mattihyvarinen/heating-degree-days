@@ -1,5 +1,5 @@
-# heating-degree-days
-Heating degree days visualization
+# Heating Degree Days
+Energy consumption comparison with heating degree days
 
 ## What?
 https://en.ilmatieteenlaitos.fi/heating-degree-days
