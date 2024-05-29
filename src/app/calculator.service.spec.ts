@@ -16,10 +16,11 @@ describe('CalculatorService', () => {
   });
 
   it('should calculate normalized consumption', () => {
-    const consumption = 915.87;
-    const expected = 556;
+    const date = new Date(2023, 11);
+    const consumption = 2022.54;
+    const expected = 1771;
     
-    const normalized_consumption = new CalculatorService().calculateNormalizedConsumption(consumption)
+    const normalized_consumption = new CalculatorService().calculateNormalizedConsumption(consumption, date);
     
     expect(expected).toEqual(normalized_consumption);
   });
